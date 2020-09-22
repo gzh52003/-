@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { withRouter, Switch, Route, Redirect, NavLink } from 'react-router-dom'
 import { HomeOutlined, UsergroupAddOutlined, ReadOutlined, MedicineBoxOutlined, UserOutlined } from '@ant-design/icons'
 import './App.css'
 import { Flex } from 'antd-mobile';
 
-import Home from '~/Home'             //首页
-import Mydoctor from '~/Mydoctor'     //我的医生
-import Knowledge from '~/Knowledge'   //疾病知识
-import Community from '~/Community'   //社区
-import Mine from '~/Mine'             //我的
+import Home from '~/Home'                             //首页
+//路由懒加载
+const Mydoctor = lazy(() => import('~/Mydoctor'))     //我的医生页
+const Knowledge = lazy(() => import('~/Knowledge'))   //疾病知识页
+const Community = lazy(() => import('~/Community'))   //社区页
+const Mine = lazy(() => import('~/Mine'))             //我的页
 
 //ES7装饰器（只能用于类组件）
 @withRouter
@@ -51,7 +52,6 @@ class App extends React.Component {
   }
 
   setSign = (id) => {
-    // console.log('点击了',id);
     this.setState({
       sign: id
     })
@@ -61,21 +61,6 @@ class App extends React.Component {
     const { menu, sign } = this.state;
     return (
       <div className="App">
-        {/* 路由 */}
-        <Switch>
-          <Route path='/home' component={Home} />
-          <Route path='/mydoctor' component={Mydoctor} />
-          <Route path='/knowledge' component={Knowledge} />
-          <Route path='/community' component={Community} />
-          <Route path='/mine' component={Mine} />
-          <Route path='/nopage' render={() => <div><h1>页面跑丢了！404</h1></div>} />
-          {/* 
-            Redirect 路由重定向
-            exact 精确匹配
-          */}
-          <Redirect from='/' to='/home' exact />
-          <Redirect to='/nopage' />
-        </Switch>
 
         {/* 底部导航栏 */}
         <div className='tabbar'>
@@ -92,9 +77,28 @@ class App extends React.Component {
                 </Flex.Item>
               ))
             }
-
           </Flex>
         </div>
+
+
+        {/* 路由 */}
+        <Suspense fallback={<div>loading......</div>}>
+          <Switch>
+            <Route path='/home' component={Home} />
+            <Route path='/mydoctor' component={Mydoctor} />
+            <Route path='/knowledge' component={Knowledge} />
+            <Route path='/community' component={Community} />
+            <Route path='/mine' component={Mine} />
+            <Route path='/nopage' render={() => <div><h1>页面跑丢了！404</h1></div>} />
+            {/* 
+            Redirect 路由重定向
+            exact 精确匹配
+          */}
+            <Redirect from='/' to='/home' exact />
+            <Redirect to='/nopage' />
+          </Switch>
+        </Suspense>
+
       </div>
     );
   }
