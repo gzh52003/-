@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.tabbar{
+  position: fixed;
+  width:100%;
+  bottom:0;
+  border-top:1px solid rgb(224, 224, 224);
+  padding-top: 6px;
+}
+.flexItem{
+  color: rgb(150, 154, 156);
+  
+}
