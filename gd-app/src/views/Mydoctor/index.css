@@ -1,0 +1,86 @@
+.am-navbar{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 50px;
+    background-color:blue;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    width: 100%;
+    color: #fff;
+  }
+  .left{
+    margin-top: 60px;
+    height: 50px;
+  }
+          .leftright{
+           height: 40px;
+            line-height: 40px;
+            float: left;
+            font-size: 20px;
+            margin-left: 20px;
+            
+          }
+  .right{
+    width: 100px;
+    height: 40px;
+    background: lightblue;
+    border-radius: 20px 0 0 20px;
+    float: right;
+    color: #fff;
+    border: none;
+    
+  }
+  .buttons{
+   width: 90%;
+   height: 100px;
+   margin: auto;
+   background: orange;
+   border-radius: 10px;
+
+  }
+  .imgs{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 40px;
+    float: left;
+  }
+  .fames{
+    padding-right: 200px;
+    color: rebeccapurple;
+  }
+  .famile{
+    float: left;
+  }
+  .familes{
+    float: left;
+  }
+  .jiant{
+    overflow: hidden;
+   display: inline-block;
+    color: #fff;
+    font-size: 30px;
+    margin-left: 160px;
+    margin-top: 25px;
+  }
+  .divimgs{
+    margin: auto;
+    margin-top: 30px;
+  }
+  .imgss{
+    width: 245px;
+    height: 162px;
+  }
+  .blue{
+    width: 60%;
+    height: 50px;
+    background: lightblue;
+    color: #fff;
+    line-height: 50px;
+    border-radius: 5px;
+    margin: auto;
+  }

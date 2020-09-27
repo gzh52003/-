@@ -20,5 +20,7 @@ module.exports = override(
     "libraryName": "antd-mobile",      //按需引入antd-mobile UI框架
     "libraryDirectory": "es",
     "style": "css"
-  })
+  }
+  ),
+
 ); 
