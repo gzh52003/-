@@ -1,8 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import { withRouter, Switch, Route, Redirect, NavLink } from 'react-router-dom'
-import { HomeOutlined, UsergroupAddOutlined, ReadOutlined, MedicineBoxOutlined, UserOutlined } from '@ant-design/icons'
+import { HomeOutlined, UsergroupAddOutlined, ReadOutlined, MedicineBoxOutlined, UserOutlined, LikeOutlined } from '@ant-design/icons'
 import './App.css'
-import { Flex } from 'antd-mobile';
+import { Flex, NavBar } from 'antd-mobile';
 
 import Home from '~/Home'                             //首页
 //路由懒加载
@@ -51,9 +51,18 @@ class App extends React.Component {
     sign: 1
   }
 
+  //功能：导航栏选中高亮
   setSign = (id) => {
     this.setState({
       sign: id
+    })
+  }
+
+  //功能：点击跳到我的页
+  toPage = (id) => {
+    this.props.history.replace(id[0]);  //页面跳转
+    this.setState({
+      sign: id[1]
     })
   }
 
@@ -61,6 +70,14 @@ class App extends React.Component {
     const { menu, sign } = this.state;
     return (
       <div className="App">
+        {/* 顶部菜单栏 */}
+        <div style={{ position: 'fixed', top: 0, width: '100%', zIndex: '100' }}>
+          <NavBar
+            mode="dark"
+            leftContent={<div onClick={this.toPage.bind(null, ['home', 1])} style={{ height: '70%', paddingBottom: '5px', fontWeight: 'bolder' }}><LikeOutlined style={{ fontSize: '30px' }} />好大夫在线</div>}
+            rightContent={<span onClick={this.toPage.bind(null, ['mine', 5])}>我的</span>}
+          ></NavBar>
+        </div>
 
         {/* 底部导航栏 */}
         <div className='tabbar'>
@@ -83,20 +100,22 @@ class App extends React.Component {
 
         {/* 路由 */}
         <Suspense fallback={<div>loading......</div>}>
-          <Switch>
-            <Route path='/home' component={Home} />
-            <Route path='/mydoctor' component={Mydoctor} />
-            <Route path='/knowledge' component={Knowledge} />
-            <Route path='/community' component={Community} />
-            <Route path='/mine' component={Mine} />
-            <Route path='/nopage' render={() => <div><h1>页面跑丢了！404</h1></div>} />
-            {/* 
+          <div style={{ padding: '45px 0 56px 0' }}>
+            <Switch >
+              <Route path='/home' component={Home} />
+              <Route path='/mydoctor' component={Mydoctor} />
+              <Route path='/knowledge' component={Knowledge} />
+              <Route path='/community' component={Community} />
+              <Route path='/mine' component={Mine} />
+              <Route path='/nopage' render={() => <div><h1>页面跑丢了！404</h1></div>} />
+              {/* 
             Redirect 路由重定向
             exact 精确匹配
           */}
-            <Redirect from='/' to='/home' exact />
-            <Redirect to='/nopage' />
-          </Switch>
+              <Redirect from='/' to='/home' exact />
+              <Redirect to='/nopage' />
+            </Switch>
+          </div>
         </Suspense>
 
       </div>

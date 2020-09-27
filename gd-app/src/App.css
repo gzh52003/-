@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .tabbar{
@@ -8,6 +9,8 @@
   bottom:0;
   border-top:1px solid rgb(224, 224, 224);
   padding-top: 6px;
+  background:white;
+  z-index: 100;
 }
 .flexItem{
   color: rgb(150, 154, 156);

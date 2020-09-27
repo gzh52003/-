@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* 宫格 */
+.grid {
+  z-index: 1;
+  width: 97.3%;
+  height: 170px;
+  padding: 30px 5px 5px 5px;
+  border-bottom: 5px solid #dcdbdb;
+}
+
+.grid .gd {
+  width: 90px;
+  height: 70px;
+}
+
+.grid .gd .gd_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.grid .gd h4 {
+  margin-top: 8px;
+}
+
+/* 我的关注 */
+.myKnowledge {
+  width: 100%;
+  height: 80px;
+  border-bottom: 2px solid #dcdbdb;
+}
+
+.mk_but {
+  width: 92%;
+  height: 40px;
+  padding: 10px 15px 0 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 列表 */
+.list {
+  width: 92%;
+  padding: 15px 15px 0 15px;
+  display: flex;
+  flex-direction: column;
+  color: gray;
+}
+
+.list .list_tit {
+  margin: 0 0 8px 0;
+  text-align: left;
+  font-size: 18px;
+  font-weight: inherit;
+  color: black;
+}
+
+.list .list_sp {
+  float: left;
+  margin-right: 5px;
+}
