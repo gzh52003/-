@@ -25,14 +25,14 @@ class Community extends React.PureComponent {
     const { grens,imgs } = this.state
     return (
       <div>
-         <NavBar
+         {/* <NavBar
 
           leftContent="<"
           onClick={this.goto}
             rightContent={[
           ]}>
           <span>医患社区</span>
-          </NavBar>
+          </NavBar> */}
   
           {imgs.map((item, index) => (
           <div key={index} className='divimges'>

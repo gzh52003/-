@@ -37,13 +37,13 @@ class Mydoctor extends React.PureComponent {
       //头部
       <div>
         <div >
-          <NavBar
+          {/* <NavBar
             leftContent="Back"
             rightContent={[
               <span key='12' style={{ marginRight: 30 }} onClick={this.goto}>首页</span>,
               <span key='11'onClick={this.gotos} >我的</span>
             ]}>
-          </NavBar>
+          </NavBar> */}
           {/* 我的医生 */}
           <div className="left"><span className='leftright'>我的医生</span>
             <button className='right'>我的订单</button></div>

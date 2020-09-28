@@ -69,7 +69,7 @@ class Mine extends React.PureComponent {
     const { rong, good, fiegood, feel } = this.state;
     return (
       <div>
-        <NavBar
+        {/* <NavBar
           leftContent="<"
           onClick={this.goto}
           rightContent={[
@@ -77,7 +77,7 @@ class Mine extends React.PureComponent {
           ]}
         >
           <p>个人中心</p>
-        </NavBar>
+        </NavBar> */}
 
         {
           rong.map((item, index) => (
