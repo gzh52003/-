@@ -4,6 +4,8 @@
 import React from 'react';
 import { SearchBar, Grid, Carousel, WingBlank, Badge, Tabs, WhiteSpace, NavBar } from 'antd-mobile';
 import './index.css'
+import request from './api'
+import axios from "axios"
 
 const tabs = [
   { title: '综合' },
@@ -15,21 +17,21 @@ const tabs = [
 ];
 class Home extends React.PureComponent {
   state = {
-    render:[{
+    render: [{
       icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
       text: `找专家`,
-      dco:'75+医生'
-     
+      dco: '75+医生'
+
     }, {
       icon: 'https://n2.hdfimg.com/g2/M04/D6/C9/yIYBAF6qw6eASGOwAAURralh7vg522_58_58_1.png?52a9',
-        text: `去开药`,
-        dco:'75+医生'
-    
-      }, {
-        icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-        text: `复诊/开药`,
-        dco:'75+医生'
-      }],
+      text: `去开药`,
+      dco: '75+医生'
+
+    }, {
+      icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+      text: `复诊/开药`,
+      dco: '75+医生'
+    }],
     data: ['1', '2', '3', '4', '5', '6', '7', '8'],
     list: [
       {
@@ -103,41 +105,51 @@ class Home extends React.PureComponent {
 
 
 
-      }],
+    }],
     tese: [{
-      title2:'专家会诊',
-      title3:'大病求助',
-    },{
-      title2:'专家会诊',
-      title3:'大病求助',
-    },{
-      title2:'专家会诊',
-      title3:'大病求助',
-      }],
+      title2: '专家会诊',
+      title3: '大病求助',
+    }, {
+      title2: '专家会诊',
+      title3: '大病求助',
+    }, {
+      title2: '专家会诊',
+      title3: '大病求助',
+    }],
     three: [{
-      title1:'免费义诊',
-      title2:'图文'
-    },{
-      title1:'免费义诊',
-        title2: '图文',
-        huibiao: '贴心'
-    },{
-      title1:'免费义诊',
-      title2:'图文'
+      title1: '免费义诊',
+      title2: '图文'
+    }, {
+      title1: '免费义诊',
+      title2: '图文',
+      huibiao: '贴心'
+    }, {
+      title1: '免费义诊',
+      title2: '图文'
     }]
   }
-  goto = ()=>{
+  goto = () => {
     this.setState({
       current: 0,
     })
     this.props.history.push('./Mine');
-}
+  }
+
+  async componentDidMount() {
+    const p = await request.reqAll();
+    axios.get("/api/home").then(res => { 
+      console.log("res11111111", res)
+    })
+    console.log('数据为', p);
+    //console.log('request==',request);
+  }
+
   render() {
-    const { list, fast, kiss ,tese,three, render} = this.state;
+    const { list, fast, kiss, tese, three, render } = this.state;
     return (
       <div>
         <div className='div'>
-          <NavBar
+          {/* <NavBar
             mode="dark"
             leftContent="Back"
             key='nav'
@@ -147,7 +159,7 @@ class Home extends React.PureComponent {
               >我的</span>
             }>
 
-          </NavBar>
+          </NavBar> */}
 
           {/* 搜索栏 */}
           <>
@@ -158,15 +170,15 @@ class Home extends React.PureComponent {
 
           {/* 三个宫格模块 */}
           {
-          render.map((item,index) => (
-              <div style={{ padding: '12px', background: 'blue',width:'26%',float:'left' }} key={index}>
+            render.map((item, index) => (
+              <div style={{ padding: '12px', background: 'blue', width: '26%', float: 'left' }} key={index}>
                 <div style={{ border: '1px solid red', borderRadius: "10px", background: 'skyblue' }}>
                   <img src={item.icon} style={{ width: '25px', height: '25px', marginTop: 10, borderRadius: "50%", background: 'blue' }} alt="" />
                   <div style={{ color: 'black', fontSize: '20px', margin: 10 }}>
-                  <span style={{fontSize:12}}>{item.text}</span>
+                    <span style={{ fontSize: 12 }}>{item.text}</span>
                   </div>
                   <div style={{ color: 'black', fontSize: '14px', marginTop: 10 }}>
-                  <div>{item.dco}</div>
+                    <div>{item.dco}</div>
                   </div>
                 </div>
               </div>
@@ -224,25 +236,25 @@ class Home extends React.PureComponent {
           </div>
           {/* 三模块 */}
           {
-            three.map((item,index)=>(
+            three.map((item, index) => (
               <div className='hiege' key={index}>
-            <div className="tuwen">
+                <div className="tuwen">
                   <p style={{ fontSize: 16 }}>{item.title1}</p>
                   <span style={{ fontSize: 10, color: '#fff' }}>{item.title2}</span>
                   <Badge text={item.huibiao ? item.huibiao : ''}
-                style={{
-                  marginLeft: 12,
-                  padding: '0 3px',
-                  backgroundColor: '#fff',
-                  borderRadius: 2,
-                  color: '#f19736',
-                  border: '1px solid #f19736',
-                  marginTop: -80,
-                  marginLeft: 60,
-                }}
-              />
-            </div>
-          </div>
+                    style={{
+                      marginLeft: 12,
+                      padding: '0 3px',
+                      backgroundColor: '#fff',
+                      borderRadius: 2,
+                      color: '#f19736',
+                      border: '1px solid #f19736',
+                      marginTop: -80,
+                      marginLeft: 60,
+                    }}
+                  />
+                </div>
+              </div>
             ))}
           {/*滚动消息栏  */}
           <div className='hook'>
@@ -275,14 +287,14 @@ class Home extends React.PureComponent {
           </div>
           {/* 特色服务 */}
           <div className='origer' >
-                <p style={{ fontSize: 24 }}><span className='widhtspan'></span><span>特色服务</span ><span className='widhtspan'></span></p>
-          {
-            tese.map((item,index)=>(
-            <div className="tuwens " style={{ paddingBottom: 15 }}key={index}>
+            <p style={{ fontSize: 24 }}><span className='widhtspan'></span><span>特色服务</span ><span className='widhtspan'></span></p>
+            {
+              tese.map((item, index) => (
+                <div className="tuwens " style={{ paddingBottom: 15 }} key={index}>
                   <p style={{ fontSize: 16, }}>{item.title2}</p>
                   <span style={{ fontSize: 10, color: '#fff' }}>{item.title3}</span>
-            </div>
-            ))}
+                </div>
+              ))}
           </div>
           <div className='origer'>
             <p style={{ fontSize: 24 }}><span className='widhtspan'></span><span>好大夫会员</span ><span className='widhtspan'></span></p>
@@ -301,15 +313,15 @@ class Home extends React.PureComponent {
             <div style={{}}>
               <Tabs tabs=
                 {tabs} initialPage={2} animated={false} useOnPan={false}>
-            
-           
-                  </Tabs>
+
+
+              </Tabs>
               {
                 kiss.map((item, index) => (
                   <div className='gider' style={{ border: '1px solid #ccc' }} key={index}>
                     <img className='imgs' src={item.img} />
                     <div className="kscksan" ><h4 className='flaot'>{item.name}</h4>{item.center}</div>
-                    <p>{item. title}</p>
+                    <p>{item.title}</p>
                   </div>
                 ))}
             </div>
