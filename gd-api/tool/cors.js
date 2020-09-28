@@ -1,6 +1,7 @@
 /* cors跨域处理 */
 
-const whileList = ['http://localhost:8080', 'http://localhost:8090'] //设置跨域白名单
+// const whileList = ['http://localhost:3000', 'http://localhost:3003', 'http://10.3.138.128/'] //设置跨域白名单
+const whileList = ['http://localhost:3003', 'http://localhost:3000','http://10.3.138.128/'] //设置跨域白名单
 
 function cors(req, res, next) {
 
