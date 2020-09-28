@@ -4,6 +4,7 @@ import React from 'react'
 import { SearchBar, Tag, Button } from 'antd-mobile';
 import { ProfileOutlined, PlaySquareOutlined } from '@ant-design/icons'
 import './index.css'
+import request from './api'
 
 class Knowledge extends React.Component {
   state = {
@@ -54,15 +55,14 @@ class Knowledge extends React.Component {
     btn: ['视频', '语音', '图文'],
     lists: [
       {
-        title: '灰指甲不想吃药，一般外用药物效果差，怎么办靠谱？',
         name: '郭波',
         nameTit: '主治医师',
         haspital: '桐乡市皮肤病防治院',
         speak: '4105条评价',
         look: '15.5万人已观看',
+        title: '灰指甲不想吃药，一般外用药物效果差，怎么办靠谱？',
       },
       {
-        title: '灰指甲不想吃药，一般外用药物效果差，怎么办靠谱？',
         name: '郭波',
         nameTit: '主治医师',
         haspital: '桐乡市皮肤病防治院',
@@ -74,10 +74,23 @@ class Knowledge extends React.Component {
         label02_num: 2,
         label03: '消除了我的困惑',
         label03_num: 2,
-        type: 'lis'
+        type: 'lis',
+        title: '灰指甲不想吃药，一般外用药物效果差，怎么办靠谱？',
       },
 
     ]
+  }
+
+  async componentDidMount() {
+    const { data } = await request.reqAll('/knowledge/lis');
+    // console.log('p=', data.data);
+    const p = data.data.slice(0, 22);
+    // const aa = data.data.slice(22);
+    console.log('p=', p);
+    // console.log('aa=', aa);
+    this.setState({
+      lists: data.data.slice(0, 22)
+    })
   }
 
   render() {
